@@ -1,0 +1,19 @@
+#home-body{
+    background: blue;
+}
+
+#firepad{
+    height: 670px;
+    width: 900px;
+    /*background-color: black;*/
+}
+
+#bg {
+  position: fixed; 
+  /*top: 0; */
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}

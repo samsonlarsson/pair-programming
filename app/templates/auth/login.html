@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html"  as wtf %}
+
+{% block title %} Pearl Login {% endblock %}
+{% block content %}
+    <div class="col-md-8 col-md-offset-4">
+        <div class="page_header">
+            <h1>Login</h1>
+        </div>
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        <p>
+        <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
+            New User?
+            <a href="{{ url_for('auth.register') }}">
+                Click here to register
+            </a>
+        </p>
+    </div>
+    </div>
+
+
+{% endblock %}
