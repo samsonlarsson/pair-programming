@@ -18,7 +18,6 @@ def index():
 @main.route('/new', methods=['GET', 'POST'])
 def new_session():
     form = SessionForm()
-    fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/', None)
     if form.validate_on_submit():
         session_ = CodeSession(session_name=form.session_name.data, session_lang=form.language.data)
         if current_user.id is not None:
@@ -48,7 +47,7 @@ def session():
 @main.route('/sessions')
 @login_required
 def my_session():
-        fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/', None)
+        fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/')
         results = fire.get('https://pear-1dd83.firebaseio.com/', None)
         sess_hash = []
         try:
@@ -80,9 +79,4 @@ def delete(hashed):
             fire.delete(current_user.username + '  ', result)
     return redirect(url_for('main.my_session'))
 
-
-@main.route('/chat')
-@login_required
-def chat():
-    return redirect('http://127.0.0.1:5001')
 

@@ -1,7 +1,7 @@
-var rootRef = new Firebase('https://pair39.firebaseio.com/');
+var rootRef = new Firebase('https://pear-1dd83.firebaseio.com/');
 username = $('#username').text();
 session_id = $('#session_id').text();
-sessionsRef = 'https://pair39.firebaseio.com/'
+sessionsRef = 'https://pear-1dd83.firebaseio.com/'
 
 $(document).ready(function() {
     url_ = '';
@@ -15,7 +15,7 @@ $(document).ready(function() {
             data: JSON.stringify({
                 id_: session_id,
                 username: username,
-                session_url: ('http://localhost:5000' + url_),
+                session_url: ('https://pearpairprogram.herokuapp.com' + url_),
             }, null, '\t'),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
     }, 3000);
 
-    var usersAddr = 'https://pair39.firebaseio.com/users';
+    var usersAddr = 'https://pear-1dd83.firebaseio.com/users';
     var onlineUsers = []
     var allUsers = []
     var showOnlineUsers = function(users, exists) {
@@ -107,7 +107,7 @@ var configEditor = function() {
 
 //get's a firebase ref, and adds a hash to the url
 var getFirebaseRef = function() {
-    var fbRef = new Firebase('https://pair39.firebaseio.com/');
+    var fbRef = new Firebase('https://pear-1dd83.firebaseio.com/');
     urlHash = window.location.hash.replace(/#/g, '');
     if (urlHash) {
         fbRef = fbRef.child(urlHash);
@@ -126,7 +126,7 @@ var saveUserSession = function() {
         session: window.location.hash.replace(/#/g, '')
     }
 
-    var rootRef = new Firebase('https://pair39.firebaseio.com/');
+    var rootRef = new Firebase('https://pear-1dd83.firebaseio.com/');
     childRef = $('#username').text();
     var sessionsRef = rootRef.child(childRef);
     pushOnline(sessionInfo, sessionsRef);
