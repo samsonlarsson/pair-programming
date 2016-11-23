@@ -18,6 +18,7 @@ def index():
 @main.route('/new', methods=['GET', 'POST'])
 def new_session():
     form = SessionForm()
+    fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/', None)
     if form.validate_on_submit():
         session_ = CodeSession(session_name=form.session_name.data, session_lang=form.language.data)
         if current_user.id is not None:
@@ -47,10 +48,9 @@ def session():
 @main.route('/sessions')
 @login_required
 def my_session():
-        fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/')
+        fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/', None)
         results = fire.get('https://pear-1dd83.firebaseio.com/', None)
         sess_hash = []
-        
         try:
             for result in results:
                 for x in results[result]:
