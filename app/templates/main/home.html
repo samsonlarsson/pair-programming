@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block head %}{{ super() }}
+    <style>
+    .navbar{
+        margin-bottom: 0;
+    }
+    </style>
+{% endblock %}
+{% block content %}
+    <img src="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/>
+{% endblock %}
