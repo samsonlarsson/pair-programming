@@ -6,6 +6,32 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename="css/style.css") }}" />
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+  <!-- ACE and its JavaScript mode and theme files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/mode-javascript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/theme-textmate.js"></script>
+
+  <!-- Firepad -->
+  <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.css" />
+  <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+
+    <!-- socket.io-->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <style>
+      html { height: 100%; }
+      body { margin: 0; height: 100%; position: relative; }
+    /* Height / width / positioning can be customized for your use case.
+       For demo purposes, we make firepad fill the entire browser. */
+    #firepad-container {
+        margin-left: : 5px;
+        height: 670px;
+        width: 900px;
+    }
+
+  </style>
 
 {% endblock %}
 
@@ -47,4 +73,47 @@
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
+    <script>
+        function init() {
+      //// Initialize Firebase.
+      var config = {
+        apiKey: "AIzaSyCxWD_QLYeo7VrNSn3tKraqF_2AluAq-yw",
+        authDomain: "pear-1dd83.firebaseapp.com",
+        databaseURL: "https://pear-1dd83.firebaseio.com",
+        storageBucket: "pear-1dd83.appspot.com",
+        messagingSenderId: "229840343470"
+      };
+      firebase.initializeApp(config);
+
+      var firepadRef = getExampleRef();
+      // TODO: Replace above line with:
+      // var firepadRef = new Firebase('<YOUR FIREBASE URL>');
+      //// Create ACE
+      var editor = ace.edit("firepad-container");
+      editor.setTheme("ace/theme/textmate");
+      var session = editor.getSession();
+      session.setUseWrapMode(true);
+      session.setUseWorker(false);
+      session.setMode("ace/mode/python");
+      //// Create Firepad.
+      var firepad = Firepad.fromACE(firepadRef, editor, {
+        defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+      });
+    }
+    // Helper to get hash from end of URL or generate a random one.
+    function getExampleRef() {
+      var ref = new Firebase('https://pair39.firebaseio.com/');
+      var hash = window.location.hash.replace(/#/g, '');
+      if (hash) {
+        ref = ref.child(hash);
+      } else {
+        ref = ref.push(); // generate unique location.
+        window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
+      }
+      if (typeof console !== 'undefined')
+        console.log('Firebase data: ', ref.toString());
+      return ref;
+    }
+    window.onload = init;
+    </script>
 {% endblock %}
