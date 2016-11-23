@@ -1,0 +1,5 @@
+Hello{{ user.username }},
+You have been sent an invite by {{ current_user.username }} for a pair coding session
+To join the session <a href="{{ session_link }}">click here</a>}
+Sincerely,
+The PEAR Team

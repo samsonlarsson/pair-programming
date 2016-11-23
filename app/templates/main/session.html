@@ -15,12 +15,16 @@
         <form role="form" method="post" action="{{ url_for('main.session') }}">
             <div class="form-group">
             <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
-                <label for="sel1">Select a user to pair code</label>
+                <label for="sel1">Select a user to pear code</label>
                     <select class="form-control" name="usernames">
                         {% for user in users %}
                             <option value="{{ user.username }} ">{{ user.username  }}  </option>
                         {% endfor %}
                     </select>
+                      <div class="form-group">
+                        <label for="session_link">Paste session Link:</label>
+                        <input  class="form-control"  name="session_link" placeholder="Session link">
+                      </div>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Send Invite">
         </form>
@@ -44,4 +48,6 @@
 <script src="{{ url_for('static', filename="js/editor.js") }}"></script>
     <script src="{{ url_for('static', filename="js/editor.js") }}"></script>
 {% endblock %} {% endblock %}
+
+
 

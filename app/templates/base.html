@@ -86,7 +86,6 @@
       firebase.initializeApp(config);
 
       var firepadRef = getExampleRef();
-      // TODO: Replace above line with:
       // var firepadRef = new Firebase('<YOUR FIREBASE URL>');
       //// Create ACE
       var editor = ace.edit("firepad-container");
@@ -102,7 +101,7 @@
     }
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
-      var ref = new Firebase('https://pair39.firebaseio.com/');
+      var ref = new Firebase('https://pear-1dd83.firebaseio.com');
       var hash = window.location.hash.replace(/#/g, '');
       if (hash) {
         ref = ref.child(hash);

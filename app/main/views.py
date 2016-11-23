@@ -38,8 +38,8 @@ def session():
             if str(user.username+' ') == str(request.form.get('usernames')):
                 print user.username
                 session_link = request.form.get('session_link')
-                msg = " Hello {} you have an invite from {} to a pair programming. Please follow this link to access the session\n {}".format(use.username, current_user.usernam, session_link)
-                send_email(sender = current_user.email, msg = msg, receipent = user.email)
+                send_email(current_user.email, user.email, "Pear Invite", 'mail/invite', user=user,  current_user=current_user,
+                           session_link=session_link)
                 print str(session_link)
     return render_template('main/session.html', users=users)
 
