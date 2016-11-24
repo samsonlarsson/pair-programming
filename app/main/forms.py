@@ -14,7 +14,7 @@ class NameForm(Form):
     name = StringField('What is your name?', validators=[Required()])
     submit = SubmitField('Submit')
 
-
+#TODO Implement in future @samson
 class EditProfileAdminForm(Form):
 
     def __init__(self, user, *args, **kwargs):

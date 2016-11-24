@@ -14,7 +14,7 @@ def index():
     session.permanent = True
     return render_template('main/home.html')
 
-
+#Initiates a new session on user request
 @main.route('/new', methods=['GET', 'POST'])
 def new_session():
     form = SessionForm()
@@ -28,7 +28,8 @@ def new_session():
         return redirect(url_for('main.session'))
     return render_template('main/new_session.html', form=form)
 
-
+#Sends out the request via an email for code pairing
+#Queries for all the users currently registered for pairing
 @main.route('/session', methods=['GET', 'POST'])
 @login_required
 def session():
@@ -43,6 +44,8 @@ def session():
                 print str(session_link)
     return render_template('main/session.html', users=users)
 
+#Queries the firebase for all the existing session
+#Checks for sessions created by current_user and renders the session in table
 @main.route('/sessions')
 @login_required
 def my_session():
@@ -55,6 +58,8 @@ def my_session():
                    sess_hash.append(str(results[result][x].get('session')))
         return render_template('main/my_sessions.html', sess_hash=sess_hash)
 
+#Gets the session from firebase and loads its instance
+#Uses the hashed key to track each session
 @main.route('/edit/<hashed>')
 def edit(hashed):
     global session_url
@@ -62,6 +67,7 @@ def edit(hashed):
     session_url = "http://pearpro.herokuapp.com/session#"+hashed
     return redirect(session_url)
 
+#Queries the firebase database for the session Id and deletes it from firebase
 @main.route('/delete/<hashed>')
 @login_required
 def delete(hashed):
