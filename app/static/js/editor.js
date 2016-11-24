@@ -15,7 +15,7 @@ $(document).ready(function() {
             data: JSON.stringify({
                 id_: session_id,
                 username: username,
-                session_url: ('https://pearpairprogram.herokuapp.com' + url_),
+                session_url: ('http://localhost:5000' + url_),
             }, null, '\t'),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {

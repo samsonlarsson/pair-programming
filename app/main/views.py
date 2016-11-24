@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request
-from flask.ext.login import current_user, login_required
+from flask_login import current_user, login_required
 from .forms import SessionForm
 from . import main
 from app import db
@@ -43,28 +43,23 @@ def session():
                 print str(session_link)
     return render_template('main/session.html', users=users)
 
-
 @main.route('/sessions')
 @login_required
 def my_session():
         fire = firebase.FirebaseApplication('https://pear-1dd83.firebaseio.com/')
         results = fire.get('https://pear-1dd83.firebaseio.com/', None)
         sess_hash = []
-        try:
-            for result in results:
-                for x in results[result]:
-                    if str(current_user.username) == str(results[result][x].get('username')).strip():
-                        sess_hash.append(str(results[result][x].get('session')))
-            return render_template('main/my_sessions.html', sess_hash=sess_hash)
-        except:
-            print results   
-
+        for result in results:
+            for x in results[result]:
+               if str(current_user.username) == str(results[result][x].get('username')).strip():
+                   sess_hash.append(str(results[result][x].get('session')))
+        return render_template('main/my_sessions.html', sess_hash=sess_hash)
 
 @main.route('/edit/<hashed>')
 def edit(hashed):
     global session_url
     #TODO followup
-    session_url = "https://pear-1dd83.firebaseio.com/session#"+hashed
+    session_url = "http://127.0.0.1:5000/session#"+hashed
     return redirect(session_url)
 
 

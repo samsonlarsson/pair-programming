@@ -15,7 +15,7 @@
         <form role="form" method="post" action="{{ url_for('main.session') }}">
             <div class="form-group">
             <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
-                <label for="sel1">Select a user to pear code</label>
+                <label for="sel1">Select a user to pair code</label>
                     <select class="form-control" name="usernames">
                         {% for user in users %}
                             <option value="{{ user.username }} ">{{ user.username  }}  </option>
