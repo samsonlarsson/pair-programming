@@ -59,9 +59,8 @@ def my_session():
 def edit(hashed):
     global session_url
     #TODO followup
-    session_url = "http://pearpro.herokuapp.com/sessions#"+hashed
+    session_url = "http://pearpro.herokuapp.com/session#"+hashed
     return redirect(session_url)
-
 
 @main.route('/delete/<hashed>')
 @login_required
