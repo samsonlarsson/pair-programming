@@ -31,10 +31,6 @@ __PEAR__ is a platform that facilitates collaboration for programmers.
 5. Run a development server.
 
     `$ python manage.py runserver`
-    
-6. In the spirit of obeying the testing goat, run the tests.
-
-      `$ python manage.py test`
 
 ## Issues
 * When you send an invite, the current user has to copy and paste the link
