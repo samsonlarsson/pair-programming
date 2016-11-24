@@ -39,3 +39,7 @@ __PEAR__ is a platform that facilitates collaboration for programmers.
   of the session name
 
 ## Milestone
+* Fully intergrate the chat sessions into the app
+* Ability to view users who are currently online
+* Ability to implement public sessions where one can share publicly
+  without authentication.
