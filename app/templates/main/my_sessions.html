@@ -5,20 +5,18 @@
 <div class="container">
 <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
   <h2>Current Sessions </h2>
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-bordered table-bg-warning">
+    <thead class="thead-default">
       <tr>
         <th>Sessions</th>
-        <th>Edit</th>
-        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
         {% for sess in sess_hash %}
             <tr>
                 <td>{{ sess }}</td>
-                <td><a href="{{ url_for('main.edit', hashed=sess) }}">Edit</a></td>
-                <td><a href="{{ url_for('main.delete', hashed=sess) }}">Delete</a></td>
+                <td><a href="{{ url_for('main.edit', hashed=sess) }}"><strong>EDIT</strong></a></td>
+                <td><a href="{{ url_for('main.delete', hashed=sess) }}"><strong>DELETE</strong></a></td>
             </tr>
         {% endfor %}
     </tbody>
