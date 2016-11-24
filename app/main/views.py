@@ -59,7 +59,7 @@ def my_session():
 def edit(hashed):
     global session_url
     #TODO followup
-    session_url = "http://127.0.0.1:5000/session#"+hashed
+    session_url = "http://pearpro.herokuapp.com/sessions#"+hashed
     return redirect(session_url)
 
 
