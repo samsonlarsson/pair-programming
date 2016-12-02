@@ -105,7 +105,7 @@ var configEditor = function() {
     });
 }
 
-//get's a firebase ref, and adds a hash to the url
+// get's a firebase ref, and adds a hash to the url
 var getFirebaseRef = function() {
     var fbRef = new Firebase('https://pear-1dd83.firebaseio.com/');
     urlHash = window.location.hash.replace(/#/g, '');
