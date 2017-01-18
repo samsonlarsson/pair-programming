@@ -10,6 +10,9 @@ __PEAR__ is a platform that facilitates collaboration for programmers.
 * Integrate a real time editor
 * Allow users in a pair programming session to chat
 
+## Check it out
+![alt tag](https://raw.githubusercontent.com/samsonpaul/pair-programming/master/app/static/img/test.png)
+
 ## Getting your own instance of PEAR app
 
 1. Clone this repository
