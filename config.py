@@ -1,5 +1,6 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+from slackclient import SlackClient
 
 
 class Config:
@@ -17,6 +18,8 @@ class Config:
     PEAR_MAIL_SUBJECT_PREFIX = '[PEAR]'
     PEAR_MAIL_SENDER = 'Pear Admin <pearprogarmming0@gmail.com>'
     PEAR_ADMIN = os.environ.get('PEAR_ADMIN')
+
+    slack_client = SlackClient(SLACK_TOKEN)
 
     @staticmethod
     def init_app(app):

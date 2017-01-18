@@ -6,8 +6,10 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import config
+from slackclient import SlackClient
+from slackclient import SlackClient
 
-slack_client = SlackClient(SLACK_TOKEN)
+
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()

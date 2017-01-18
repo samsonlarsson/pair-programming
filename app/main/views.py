@@ -28,18 +28,17 @@ def channel_info(channel_id):
         return channel_info['channel']
     return None
 
-# takes in the ID for a channel, then posts a message from our 
-# “Python bot” to that channel.
 def send_message(channel_id, message):
     slack_client.api_call(
         "chat.postMessage",
         channel=channel_id,
         text=message,
-        username='pythonbot',
+        username=current_user.username,
         icon_emoji=':robot_face:'
     )
 
-@app.route('/slack', methods=['POST'])
+# Recieving messages
+@main.route('/slack', methods=['POST'])
 def inbound():
     if request.form.get('token') == SLACK_WEBHOOK_SECRET:
         channel = request.form.get('channel_name')
@@ -50,7 +49,7 @@ def inbound():
     return Response(), 200
 
 
-@app.route('/', methods=['GET'])
+@main.route('/', methods=['GET'])
 def test():
     return Response('It works!')
 

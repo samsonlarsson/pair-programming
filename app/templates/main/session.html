@@ -28,6 +28,25 @@
                 </div>
                 <input type="submit" class="btn btn-primary" value="Send Invite">
         </form>
+        <br>
+        <div class="page-header"></div>
+  <h3>Broadcast Messages</h3>
+        <form role="form" method="post" action="{{ url_for('main.session') }}">
+            <div class="form-group">
+            <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
+                <label for="sel1">Select Slack Channel</label>
+                    <select class="form-control" name="usernames">
+                        {% for user in users %}
+                            <option value="{{ user.username }} ">{{ Channel  }}  </option>
+                        {% endfor %}
+                    </select>
+                      <div class="comment-form">
+                        <label for="session_link">Message Content:</label>
+                        <input  class="form-control"  name="session_link" placeholder="Message Content">
+                      </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Send">
+        </form>
         </div>
         <div class="col-md-8">
            <div id="firepad"></div>

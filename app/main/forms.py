@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, SubmitField, SelectField, BooleanField
 from wtforms.validators import Required, Length
 from ..models import User
-
+from slackclient import SlackClient
 
 class SessionForm(Form):
     session_name = StringField(
@@ -13,6 +13,12 @@ class SessionForm(Form):
 class NameForm(Form):
     name = StringField('What is your name?', validators=[Required()])
     submit = SubmitField('Submit')
+
+class ChatForm(Form):
+    channel = SelectField(u'Channel', choices=[()])
+    text = StringField('Enter Message here', validators=[Required()])
+    submit = SubmitField('Send')
+        
 
 #TODO Implement in future @samson
 class EditProfileAdminForm(Form):
@@ -32,4 +38,3 @@ class EditProfileAdminForm(Form):
         if field.data != self.user.username and \
                 User.query.filter_by(username=field.data).first():
             raise ValidationError('Username already in use.')
-
