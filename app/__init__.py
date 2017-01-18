@@ -7,7 +7,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import config
 from slackclient import SlackClient
-from slackclient import SlackClient
 
 
 bootstrap = Bootstrap()

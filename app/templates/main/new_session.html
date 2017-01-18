@@ -2,16 +2,33 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block title %}Pear - New session{% endblock %}
 {% block content %}
-        <div class="col-md-8 col-md-offset-4">
+        <div class="col-md-8 col-md-offset-0">
+        	<body background="{{ url_for('static', filename='img/header-copy.jpg') }}" id="bg" alt=""/body>
             <div class="page-header">
 
                 <h1>Create new session</h1>
 
             </div>
-            <div class="col-md-4">
-            <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
+            <div class="col-md-6">
+            
                 {{ wtf.quick_form(form) }}
 
             </div>
+
+            <div class="col-md-6">
+
+                
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div>
+
+                <img src="{{ url_for('static', filename='img/test.png') }}">
+
+
+            </div>
+        
+
+        
         </div>
 {% endblock %}

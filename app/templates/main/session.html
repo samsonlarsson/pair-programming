@@ -5,7 +5,7 @@
 
 {% block content %}
 
-
+<body background="{{ url_for('static', filename='img/header-copy.jpg') }}" id="bg" alt=""/body>
 <p id="username" hidden>{{ current_user.username }}  </p>
 <p id="session_id"  hidden>{{ current_user.id}}</p>
 <div class="container">
@@ -14,7 +14,7 @@
   <h2>Pair</h2>
         <form role="form" method="post" action="{{ url_for('main.session') }}">
             <div class="form-group">
-            <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
+            
                 <label for="sel1">Select a user to pair code</label>
                     <select class="form-control" name="usernames">
                         {% for user in users %}
@@ -33,7 +33,6 @@
   <h3>Broadcast Messages</h3>
         <form role="form" method="post" action="{{ url_for('main.session') }}">
             <div class="form-group">
-            <body background="{{ url_for('static', filename='img/header.jpg') }}" id="bg" alt=""/body>
                 <label for="sel1">Select Slack Channel</label>
                     <select class="form-control" name="usernames">
                         {% for user in users %}
