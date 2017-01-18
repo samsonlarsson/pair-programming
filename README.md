@@ -47,7 +47,7 @@ __PEAR__ is a platform that facilitates collaboration for programmers.
 
     `$ python manage.py runserver`
 
-## Curren
+## Current
 * Implementation of slack
 
 ## Issues
