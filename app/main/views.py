@@ -28,6 +28,7 @@ def channel_info(channel_id):
         return channel_info['channel']
     return None
 
+# Send message
 def send_message(channel_id, message):
     slack_client.api_call(
         "chat.postMessage",
