@@ -6,6 +6,7 @@ from app import db
 from ..models import User, CodeSession
 from app.email import send_email
 from firebase import firebase
+from slackclient import SlackClient
 
 
 session_url = ""
@@ -13,6 +14,46 @@ session_url = ""
 def index():
     session.permanent = True
     return render_template('main/home.html')
+
+def list_channels():
+    channels_call = slack_client.api_call("channels.list")
+    if channels_call['ok']:
+        return channels_call['channels']
+    return None
+
+
+def channel_info(channel_id):
+    channel_info = slack_client.api_call("channels.info", channel=channel_id)
+    if channel_info:
+        return channel_info['channel']
+    return None
+
+# takes in the ID for a channel, then posts a message from our 
+# “Python bot” to that channel.
+def send_message(channel_id, message):
+    slack_client.api_call(
+        "chat.postMessage",
+        channel=channel_id,
+        text=message,
+        username='pythonbot',
+        icon_emoji=':robot_face:'
+    )
+
+@app.route('/slack', methods=['POST'])
+def inbound():
+    if request.form.get('token') == SLACK_WEBHOOK_SECRET:
+        channel = request.form.get('channel_name')
+        username = request.form.get('user_name')
+        text = request.form.get('text')
+        inbound_message = username + " in " + channel + " says: " + text
+        print(inbound_message)
+    return Response(), 200
+
+
+@app.route('/', methods=['GET'])
+def test():
+    return Response('It works!')
+
 
 #Initiates a new session on user request
 @main.route('/new', methods=['GET', 'POST'])
@@ -80,3 +121,19 @@ def delete(hashed):
     return redirect(url_for('main.my_session'))
 
 
+if __name__ == '__main__':
+    channels = list_channels()
+    if channels:
+        print("Channels: ")
+        for channel in channels:
+            print(channel['name'] + " (" + channel['id'] + ")")
+            detailed_info = channel_info(channel['id'])
+            if detailed_info:
+                print('Latest text from ' + channel['name'] + ":")
+                print(detailed_info['latest']['text'])
+            if channel['name'] == 'general':
+                send_message(channel['id'], "Hello " +
+                             channel['name'] + "! It worked!")
+        print('-----')
+    else:
+        print("Unable to authenticate.")
