@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/samsonpaul/pair-programming.png?label=ready&title=Ready)](https://waffle.io/samsonpaul/pair-programming)
 # PEAR
 __A Pair Programming Platform App.__
 
