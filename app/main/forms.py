@@ -20,7 +20,7 @@ class ChatForm(Form):
     submit = SubmitField('Send')
         
 
-#TODO Implement in future @samson
+# TODO Implement in future @samson
 class EditProfileAdminForm(Form):
 
     def __init__(self, user, *args, **kwargs):
