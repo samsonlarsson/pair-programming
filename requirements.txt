@@ -20,7 +20,7 @@ Mako==1.0.6
 MarkupSafe==0.23
 python-editor==1.0.1
 python-firebase==1.2
-requests==2.12.1
+requests==2.20.0
 SQLAlchemy==1.1.4
 urllib3==1.19.1
 visitor==0.1.3
